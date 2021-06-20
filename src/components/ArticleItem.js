@@ -31,7 +31,7 @@ class ArticleItem extends React.Component {
     }
 
     deleteArticle = async ()=>{
-        axios.defaults.headers.common['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNiOGJiN2EzZDI3NzlmNDk0Y2VkYTMiLCJpYXQiOjE2MjQxNDI2Mjh9.QtL1gAYl1KJzxGEEykwSOOdHZ7yJ5AZbUFiQ6RsGWXw";
+        axios.defaults.headers.common['Authorization'] = "Bearer "+ localStorage.getItem('token');
         const response = await axios.delete('/article/delete/'+this.props.articleId);
       
         window.location.reload();
@@ -42,7 +42,7 @@ class ArticleItem extends React.Component {
             <div className="row">
                 <div className="col-sm-4">
                     <Link to="#" className="">
-                        <img src={`http://localhost:4000/article/${this.props.articleId}/image`} alt="rand" className="img-thumbnail"/>
+                        <img src={`https://mamduh-weds360-backend.herokuapp.com/article/${this.props.articleId}/image`} alt="rand" className="img-thumbnail"/>
                     </Link>
                 </div>
                 <div className="col-sm-8  d-flex flex-column">

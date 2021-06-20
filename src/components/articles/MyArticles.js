@@ -11,7 +11,7 @@ class MyArticles extends React.Component {
 
     fetchArticles = async ()=>{
 
-        axios.defaults.headers.common['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNiOGJiN2EzZDI3NzlmNDk0Y2VkYTMiLCJpYXQiOjE2MjQxNDI2Mjh9.QtL1gAYl1KJzxGEEykwSOOdHZ7yJ5AZbUFiQ6RsGWXw";
+        axios.defaults.headers.common['Authorization'] = "Bearer "+ localStorage.getItem('token');
         const response = await axios.get('/user/articles');
         this.setState(
             {
@@ -42,6 +42,8 @@ class MyArticles extends React.Component {
     render(){
                 return  (
                             <div className="list-group">
+                                <h1 style={{justifyContent: "center", display: "flex"}}>Your Articles</h1>
+                                    <hr className="hr-or"/>
                                 {this.renderList()}
                             </div>
                         );

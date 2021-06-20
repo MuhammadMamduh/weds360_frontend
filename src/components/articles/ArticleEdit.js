@@ -39,7 +39,7 @@ componentDidMount(){
         headers: { 'content-type': 'multipart/form-data' }
     }
 
-    axios.defaults.headers.common['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNiOGJiN2EzZDI3NzlmNDk0Y2VkYTMiLCJpYXQiOjE2MjQxNDI2Mjh9.QtL1gAYl1KJzxGEEykwSOOdHZ7yJ5AZbUFiQ6RsGWXw";
+    axios.defaults.headers.common['Authorization'] = "Bearer "+ localStorage.getItem('token');
     const response = await axios.put(`/article/update/`+this.props.match.params.id,{
       title: event.target.title.value,
       body: event.target.editor.value
@@ -64,7 +64,7 @@ render(){
             </div>
           </div>
           <div className="d-flex align-items-center justify-content-center">
-              <img src={`http://localhost:4000/article/${this.props.match.params.id}/image`} className="img-fluid" alt=""/>
+              <img src={`https://mamduh-weds360-backend.herokuapp.com/article/${this.props.match.params.id}/image`} className="img-fluid" alt=""/>
           </div>
 
           <div className="col-md-12 ">
@@ -110,7 +110,7 @@ render(){
               </div>
               <p className="text-muted d-inline">
               <br/>
-                * Between 100 & 1000 chars
+                {/* * Between 100 & 1000 chars */}
               </p>
             </div>
 
@@ -133,4 +133,4 @@ render(){
 }
 }
 
-export default ArticleEdit;<br/>
+export default ArticleEdit;

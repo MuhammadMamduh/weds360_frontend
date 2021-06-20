@@ -1,7 +1,37 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import axios from '../apis/backend';
+import { withRouter } from 'react-router';
 
-const Header = ()=>{
+class Header extends React.Component {
+
+    state = {token: localStorage.getItem('token')}
+
+
+    componentDidMount(){
+        console.log("From componentDidMount: ");
+        console.log(this.state.token);
+    }
+    logoutHelper = async(e)=>{
+
+        console.log(this.state.token)
+        // 1
+        axios.defaults.headers.common['Authorization'] = "Bearer "+ localStorage.getItem('token');
+        const response = await axios.post('/users/logout');
+
+        // 2
+        localStorage.removeItem('token');
+
+        // 3
+        this.setState({
+            token: ""
+        })
+
+        // 4
+        window.location.reload();
+    }
+
+    render(){
     return  (
                 <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,11 +53,11 @@ const Header = ()=>{
                                 <Link className="nav-link" to="/">Home <span className="sr-only"></span></Link>
                             </li>
 
-                            <li className="nav-item">
+                            <li className={`nav-item ${this.state.token===null?'invisible':'visible}'}`}>
                                 <Link className="nav-link" to="/articles/new">Publish Article</Link>
                             </li>
 
-                            <li className="nav-item">
+                            <li className={`nav-item ${this.state.token===null?'invisible':'visible}'}`}>
                                 <Link className="nav-link" to="/user/articles">My Articles</Link>
                             </li>
                         </ul>
@@ -35,22 +65,29 @@ const Header = ()=>{
 
                     <ul className="nav navbar-nav navbar-right">
                         <li>
-                            <Link className="nav-link visible" to="/login">
-                                <button className="btn btn-outline-secondary" type="submit">
+                            <Link className={`nav-link ${this.state.token===null?'visible':'invisible'}`} to="/login">
+                                <button 
+                                className="btn btn-outline-secondary" 
+                                type="submit">
                                     Login
                                 </button>
                             </Link>
                         </li>
                         <li>
-                            <Link className="nav-link visible" to="/signup">
-                                <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                            <Link className={`nav-link ${this.state.token===null?'visible':'invisible'}`} to="/signup">
+                                <button 
+                                    className="btn btn-outline-primary my-2 my-sm-0" 
+                                    type="submit">
                                     Sign Up
                                 </button>
                             </Link>
                         </li>
                         <li>
-                            <Link className="nav-link visible" to="/signup">
-                                <button className="btn btn-outline-danger my-2 my-sm-0" type="submit">
+                            <Link className={`nav-link ${this.state.token===null?'invisible':'visible'}`} to="/">
+                                <button 
+                                    onClick={this.logoutHelper}
+                                    className="btn btn-outline-danger my-2 my-sm-0" 
+                                    type="submit">
                                     Logout
                                 </button>
                             </Link>
@@ -66,6 +103,6 @@ const Header = ()=>{
             </div>
                 </div>
             );
-}
+}}
 
 export default Header;

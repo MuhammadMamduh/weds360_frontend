@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from '../apis/backend';
 
 class Login extends React.Component{
-  state = {email:"", password:"", token:""}
+  state = {email:"", password:"", token:"null"}
 
   loginRequest= async()=>{
     const response = await axios.post('/users/login',{
@@ -11,7 +11,7 @@ class Login extends React.Component{
       password:this.state.password
     });
 
-    console.log(response);
+    // console.log(response);
   }
 
    handleSubmit = async(event) =>{
@@ -32,7 +32,10 @@ class Login extends React.Component{
       token:response.data.token
     })
 
-    console.log(this.state);
+    localStorage.setItem('token', response.data.token);
+    console.log(localStorage.getItem('token'));
+    this.props.history.push('/user/articles');
+    window.location.reload();
   }
 
   render(){
@@ -51,10 +54,22 @@ class Login extends React.Component{
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address</label>
               <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+              <br/>
             </div>
+            
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Password</label>
-              <input type="password" name="password" id="password" className="form-control" aria-describedby="emailHelp" placeholder="Enter Password" />
+              <input 
+                type="password" name="password" 
+                id="password" className="form-control" 
+                aria-describedby="emailHelp" placeholder="Enter Password" 
+                
+                pattern=".{7,15}"
+                required
+              />
+              <p className="text-muted d-inline">
+                <small>* [7, 15] chars </small>
+              </p>
             </div>
             <div className="form-group">
                 <p className="text-center">

@@ -27,7 +27,7 @@ class ArticleCreate extends React.Component{
         headers: { 'content-type': 'multipart/form-data' }
     }
 
-    axios.defaults.headers.common['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNiOGJiN2EzZDI3NzlmNDk0Y2VkYTMiLCJpYXQiOjE2MjQxNDI2Mjh9.QtL1gAYl1KJzxGEEykwSOOdHZ7yJ5AZbUFiQ6RsGWXw";
+    axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
     const response = await axios.post('/articles',formData, config)
     console.log(response);
 
@@ -39,8 +39,7 @@ render(){
         <div className="container">
         <div className="row">
           <div className="col-md-5 mx-auto">
-        <div id="first">
-
+            <div id="first">
               <h1>Publish an Article</h1>
             </div>
           </div>
@@ -91,7 +90,7 @@ render(){
               </div>
               <p className="text-muted d-inline">
               <br/>
-                * Between 100 & 1000 chars
+                {/* * Between 100 & 1000 chars */}
               </p>
             </div>
 

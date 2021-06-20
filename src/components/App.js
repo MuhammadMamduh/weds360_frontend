@@ -16,6 +16,8 @@ class App extends React.Component{
 
     visibility = this.state.token===undefined?"invisible":"visible";
     
+    
+
     render(){
             return (
                     //  

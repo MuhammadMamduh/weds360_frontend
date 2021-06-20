@@ -9,7 +9,8 @@ class SignUp extends React.Component {
     
        handleSubmit = async(event) =>{
         event.preventDefault();
-    
+        
+        
         const response = await axios.post('/users',
           {      
             name:event.target.name.value,
@@ -27,7 +28,10 @@ class SignUp extends React.Component {
           token:response.data.token
         })
     
-        console.log(this.state);
+        localStorage.setItem('token', response.data.token);
+        console.log(localStorage.getItem('token'));
+        this.props.history.push('/');
+        window.location.reload();
       }
 
 render(){
@@ -54,7 +58,17 @@ render(){
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" id="password" className="form-control" aria-describedby="emailHelp" placeholder="Enter Password" />
+                                <input 
+                                    type="password" name="password" 
+                                    id="password" className="form-control" 
+                                    aria-describedby="emailHelp" placeholder="Enter Password" 
+                                    
+                                    pattern=".{7,15}"
+                                    required
+                                    />
+                                <p className="text-muted d-inline">
+                                    <small>* [7, 15] chars </small>
+                                </p>
                             </div>
                             <div className="col-md-12 ">
                                 <div className="form-group">
