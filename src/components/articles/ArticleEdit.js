@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from '../../apis/backend';
+import { withRouter } from 'react-router';
 
 class ArticleEdit extends React.Component{
   state= {title:"",body:""};
@@ -43,6 +44,8 @@ componentDidMount(){
       title: event.target.title.value,
       body: event.target.editor.value
     })
+
+    this.props.history.push('/user/articles');
   }
 
 render(){

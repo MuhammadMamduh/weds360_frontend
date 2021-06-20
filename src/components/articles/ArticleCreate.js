@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from '../../apis/backend';
+import { withRouter } from 'react-router';
+
 
 class ArticleCreate extends React.Component{
   state= {title:"", image:null, body:""};
@@ -28,6 +30,8 @@ class ArticleCreate extends React.Component{
     axios.defaults.headers.common['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNiOGJiN2EzZDI3NzlmNDk0Y2VkYTMiLCJpYXQiOjE2MjQxNDI2Mjh9.QtL1gAYl1KJzxGEEykwSOOdHZ7yJ5AZbUFiQ6RsGWXw";
     const response = await axios.post('/articles',formData, config)
     console.log(response);
+
+    this.props.history.push('/');
   }
 
 render(){
