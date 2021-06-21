@@ -10,7 +10,7 @@ class Header extends React.Component {
 
     componentDidMount(){
         console.log("From componentDidMount: ");
-        console.log(this.state.token);
+        console.log(this.state.token);;
     }
     logoutHelper = async(e)=>{
 
