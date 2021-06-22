@@ -46,8 +46,8 @@ class ArticleItem extends React.Component {
                     </Link>
                 </div>
                 <div className="col-sm-8  d-flex flex-column">
-                    <h4 className="text-break" style={{maxWidth:"75%", maxHeight: '85px', overflow: 'hidden'}}>
-                        <Link to={`/article/${this.props.articleId}`}>
+                    <h4 className="text-break" style={{maxWidth:"75%", maxHeight: '85px', overflow: 'hidden',  textDecoration: 'none'}}>
+                        <Link to={`/article/${this.props.articleId}`} style={{ textDecoration: 'none', color:'black' }}>
                             {this.props.title}
                         </Link>
                     </h4>
