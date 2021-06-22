@@ -57,8 +57,8 @@ class ArticleItem extends React.Component {
                             <u>{moment(this.props.publicationDate).calendar()}</u>
                         </p>
 
-                        {this.linkHelper()}
-                        <small><StopwatchIcon/> {moment(this.props.publicationDate).fromNow()}</small>
+                        {this.linkHelper()} 
+                        <small><p className="text-muted d-inline"><StopwatchIcon/> Last Updated | {moment(this.props.lastUpdated).fromNow()}</p></small>
                     </div>
 
                     <div className="text-break" style={{ overflow: 'hidden', maxHeight: '125px'}}>

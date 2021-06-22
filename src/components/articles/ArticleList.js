@@ -29,6 +29,7 @@ class ArticleList extends React.Component {
                             body={article.body}
                             author={article.author}
                             publicationDate={article.createdAt}
+                            lastUpdated={article.updatedAt}
                             articleId={article._id}
                             key={article._id}
                             modifiable={false}

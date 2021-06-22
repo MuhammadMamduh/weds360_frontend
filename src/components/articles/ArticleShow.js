@@ -5,7 +5,7 @@ import {PencilIcon, XCircleIcon, StopwatchIcon} from '@primer/octicons-react';
 
 class ArticleShow extends React.Component {
 
-    state = {title:"", body:"", author:{}}
+    state = {title:"", body:"", createdAt: new Date(), lastUpdated: new Date(), author:{}}
     fetchArticle = async ()=>{
         const response = await axios.get('/articles/'+this.props.match.params.id);
 
@@ -14,7 +14,8 @@ class ArticleShow extends React.Component {
         this.setState({
             title:response.data.title,
             body:response.data.body,
-            date: response.data.createdAt,
+            createdAt: response.data.createdAt,
+            lastUpdated: response.data.updatedAt,
             author: response.data.author
         });
     }
@@ -34,9 +35,9 @@ class ArticleShow extends React.Component {
                         <h4>{this.state.title}</h4>
                                 <div className="d-flex justify-content-between">
                                     <small className="text-muted d-inline">
-                                        {moment(this.state.date).calendar()} | By {this.state.author.name}
+                                        {moment(this.state.createdAt).calendar()} | By {this.state.author.name}
                                     </small>
-                                    <small><StopwatchIcon/> {moment(this.props.publicationDate).fromNow()}</small>
+                                    <small><p className="text-muted d-inline"><StopwatchIcon/> Last Updated | {moment(this.state.lastUpdated).fromNow()}</p></small>
                                 </div>
                                 <br/>
                         <div className="col-md-12 ">
