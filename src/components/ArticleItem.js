@@ -66,8 +66,8 @@ class ArticleItem extends React.Component {
                     </div>
                     <div className="mt-auto">
                         <p className="text-muted">
-                            Presented by 
-                            <Link to="#"> {this.props.author.name}</Link>
+                            Written by 
+                            <i><Link to="#" style={{ textDecoration: 'none'}}> {this.props.author.name}</Link></i>
                         </p>
                         <hr />
                     </div>
