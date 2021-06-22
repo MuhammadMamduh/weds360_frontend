@@ -67,7 +67,7 @@ class ArticleItem extends React.Component {
                     <div className="mt-auto">
                         <p className="text-muted">
                             Presented by 
-                            <Link to="#"> {this.props.publicationDate}</Link>
+                            <Link to="#"> {this.props.author.name}</Link>
                         </p>
                         <hr />
                     </div>
