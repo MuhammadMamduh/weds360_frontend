@@ -3,7 +3,7 @@ import ArticleItem from '../ArticleItem';
 import axios from '../../apis/backend';
 
 class MyArticles extends React.Component {
-    state = {articles: [], selectedArticle: null}; // state & its initialization
+    state = {articles: [], selectedArticle: null, author:""}; // state & its initialization
 
     componentDidMount () {
         this.fetchArticles();
@@ -16,6 +16,7 @@ class MyArticles extends React.Component {
         this.setState(
             {
                 articles: response.data.articles,
+                author: response.data.user,
                 selectedArticle: response.data.articles[0]
             }
         );
@@ -30,7 +31,7 @@ class MyArticles extends React.Component {
                         <ArticleItem
                             title={article.title}
                             body={article.body}
-                            author={article.body}
+                            author={this.state.author}
                             publicationDate={article.createdAt}
                             articleId={article._id}
                             key={article._id}
