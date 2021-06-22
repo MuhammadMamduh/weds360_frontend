@@ -49,7 +49,7 @@ class Header extends React.Component {
                             <li className="active">
                                 <Link className="nav-link" style={{color:"black", fontWeight: "bolder",fontSize: "large"}} to="/">Articulate <span className="sr-only"></span></Link>
                             </li>
-                            <li className="nav-item active">
+                            <li className={`nav-item ${this.state.token===null?'invisible':'visible}'}`}>
                                 <Link className="nav-link" to="/">Home <span className="sr-only"></span></Link>
                             </li>
 
