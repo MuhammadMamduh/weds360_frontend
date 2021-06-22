@@ -22,13 +22,14 @@ class SignUp extends React.Component {
         console.log(response);
     
         this.setState({
-          name:event.target.name.value,
-          email:event.target.email.value,
-          password:event.target.password.value,
+          name:response.data.user.name,
+          email:response.data.user.email,
+          password:response.data.user.password,
           token:response.data.token
         })
     
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('username', response.data.user.name);
         console.log(localStorage.getItem('token'));
         this.props.history.push('/');
         window.location.reload();

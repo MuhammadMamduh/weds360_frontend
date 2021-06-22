@@ -5,12 +5,12 @@ import { withRouter } from 'react-router';
 
 class Header extends React.Component {
 
-    state = {token: localStorage.getItem('token')}
+    state = {token: localStorage.getItem('token'), username: localStorage.getItem('username')}
 
 
     componentDidMount(){
         console.log("From componentDidMount: ");
-        console.log(this.state.token);;
+        // console.log(this.state.token);
     }
     logoutHelper = async(e)=>{
 
@@ -21,10 +21,12 @@ class Header extends React.Component {
 
         // 2
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
 
         // 3
         this.setState({
-            token: ""
+            token: "",
+            username: ""
         })
 
         // 4
@@ -36,7 +38,7 @@ class Header extends React.Component {
                 <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <Link className="navbar-brand" to="/">
-                        <img src="https://cdn.logojoy.com/wp-content/uploads/2018/05/30164225/572-768x591.png" width={64} height={50} className="d-inline-block align-top" alt />
+                        <img alt="logo" src="https://cdn.logojoy.com/wp-content/uploads/2018/05/30164225/572-768x591.png" width={64} height={50} className="d-inline-block align-top" alt />
                         
                     </Link>
 
@@ -60,9 +62,14 @@ class Header extends React.Component {
                             <li className={`nav-item ${this.state.token===null?'invisible':'visible}'}`}>
                                 <Link className="nav-link" to="/user/articles">My Articles</Link>
                             </li>
+                            <li className={`nav-item ${this.state.token===null?'invisible':'visible}'}`}>
+                                <Link className="nav-link" to="/user/articles">My Articles</Link>
+                            </li>
+                            <li className={`nav-item ${this.state.username===null?'invisible':'visible}'}`}>
+                                <Link className="nav-link" to="#">this.state.username</Link>
+                            </li>
                         </ul>
                     </div>
-
                     <ul className="nav navbar-nav navbar-right">
                         <li>
                             <Link className={`nav-link ${this.state.token===null?'visible':'invisible'}`} to="/login">

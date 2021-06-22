@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from '../apis/backend';
 
 class Login extends React.Component{
-  state = {email:"", password:"", token:"null"}
+  state = {name:"", email:"", password:"", token:"null"}
 
   loginRequest= async()=>{
     const response = await axios.post('/users/login',{
@@ -27,13 +27,15 @@ class Login extends React.Component{
     console.log(response);
 
     this.setState({
-      email:event.target.email.value,
-      password:event.target.password.value,
+      name: response.data.user.name,
+      email:response.data.user.email,
+      password:response.data.user.password,
       token:response.data.token
     })
 
     localStorage.setItem('token', response.data.token);
-    console.log(localStorage.getItem('token'));
+    localStorage.setItem('username', response.data.user.name);
+    // console.log(localStorage.getItem('token'));
     this.props.history.push('/user/articles');
     window.location.reload();
   }
