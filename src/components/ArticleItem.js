@@ -41,8 +41,8 @@ class ArticleItem extends React.Component {
         return  (
             <div className="row">
                 <div className="col-sm-4">
-                    <Link to="#" className="">
-                        <img src={`https://mamduh-weds360-backend.herokuapp.com/article/${this.props.articleId}/image`} alt="rand" className="img-thumbnail"/>
+                    <Link to={`/article/${this.props.articleId}`} className="">
+                        <img length="370" width="300" src={`https://mamduh-weds360-backend.herokuapp.com/article/${this.props.articleId}/image`} alt={this.props.title} className="img-thumbnail"/>
                     </Link>
                 </div>
                 <div className="col-sm-8  d-flex flex-column">
@@ -54,7 +54,7 @@ class ArticleItem extends React.Component {
                     
                     <div className="d-flex justify-content-between">
                         <p className="text-muted d-inline">
-                            {moment(this.props.publicationDate).calendar()}
+                            <u>{moment(this.props.publicationDate).calendar()}</u>
                         </p>
 
                         {this.linkHelper()}
@@ -66,7 +66,7 @@ class ArticleItem extends React.Component {
                     </div>
                     <div className="mt-auto">
                         <p className="text-muted">
-                            Written by 
+                            <u>Written by</u> 
                             <i><Link to="#" style={{ textDecoration: 'none'}}> {this.props.author.name}</Link></i>
                         </p>
                         <hr />
