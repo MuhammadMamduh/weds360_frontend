@@ -66,7 +66,7 @@ class Header extends React.Component {
                                 <Link className="nav-link" to="/user/articles">My Articles</Link>
                             </li>
                             <li className={`nav-item ${this.state.username===null?'invisible':'visible}'}`}>
-                                <Link className="nav-link" to="#">this.state.username</Link>
+                                <Link className="nav-link" to="#" style={{textDecoration:'none', color:'black'}}> | {this.state.username}</Link>
                             </li>
                         </ul>
                     </div>
