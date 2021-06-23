@@ -39,7 +39,6 @@ class Header extends React.Component {
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <Link className="navbar-brand" to="/">
                         <img alt="logo" src="https://cdn.logojoy.com/wp-content/uploads/2018/05/30164225/572-768x591.png" width={64} height={50} className="d-inline-block align-top" alt />
-                        
                     </Link>
 
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

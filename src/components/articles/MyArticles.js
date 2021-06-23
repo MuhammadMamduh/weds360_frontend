@@ -3,7 +3,7 @@ import ArticleItem from '../ArticleItem';
 import axios from '../../apis/backend';
 import moment from 'moment';
 import {Link} from 'react-router-dom';
-
+import Spinner from '../Spinner';
 class MyArticles extends React.Component {
     state = {articles: [], selectedArticle: null, author:""}; // state & its initialization
 
@@ -61,7 +61,7 @@ class MyArticles extends React.Component {
                                                 <p className="card-text text-muted small "> 
                                                     <img alt="star" src="https://img.icons8.com/metro/26/000000/star.png" className="mr-1 " width={19} height={19} id="star" /> 
                                                         <span className="vl mr-2 ml-0" /> Created By &nbsp;&nbsp;&nbsp;|  
-                                                        <span className="font-weight-bold"> {this.state.author.name}</span>
+                                                        <span className="font-weight-bold"> {this.state.author===""?<Spinner/>:this.state.author.name}</span>
                                                         <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joined Since | {moment(this.state.author.createdAt).fromNow()}
                                                 </p>
                                             </h6>
