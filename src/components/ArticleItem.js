@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {PencilIcon, XCircleIcon, StopwatchIcon} from '@primer/octicons-react';
 import axios from '../apis/backend';
 import Spinner from './Spinner';
+import Skeleton from 'react-loading-skeleton';
 
 class ArticleItem extends React.Component {
     state = {articleId: "", title:"", body:"", auhor:""}
@@ -55,14 +56,14 @@ class ArticleItem extends React.Component {
             <div className="row">
                 <div className="col-sm-4">
                     <Link to={`/article/${this.props.articleId}`} className="">
-                        {this.state.articleId===""?<Spinner/>:""}
+                        {/* {this.state.articleId===""?<Spinner/>:""} */}
                         <img length="370" width="300" src={`https://mamduh-weds360-backend.herokuapp.com/article/${this.props.articleId}/image`} alt={this.props.title} className="img-thumbnail"/>
                     </Link>
                 </div>
                 <div className="col-sm-8  d-flex flex-column">
                     <h4 className="text-break" style={{maxWidth:"75%", maxHeight: '85px', overflow: 'hidden',  textDecoration: 'none'}}>
                         <Link to={`/article/${this.props.articleId}`} style={{ textDecoration: 'none', color:'black' }}>
-                            {this.state.title===""?<Spinner/>:this.props.title}
+                            {this.props.title || <Skeleton/>}
                         </Link>
                     </h4>
                     
@@ -76,8 +77,7 @@ class ArticleItem extends React.Component {
                     </div>
 
                     <div className="text-break" style={{ overflow: 'hidden', maxHeight: '125px'}}>
-                        {/* {this.props.body} */}
-                        {this.state.title===""?<Spinner/>:this.props.body}
+                        {this.props.body || <Skeleton/>}
                     </div>
                     <div className="mt-auto">
                         <p className="text-muted">

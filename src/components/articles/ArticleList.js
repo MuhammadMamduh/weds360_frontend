@@ -48,8 +48,8 @@ class ArticleList extends React.Component {
                         <div className="container" align="center">
                             <Spinner
                                 klass="spinner-border text-muted" 
-                                message = "Loading ..."
                             />
+                            <h1> Loading ...</h1>
                         </div>
                     );
         }
