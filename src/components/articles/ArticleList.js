@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticleItem from '../ArticleItem';
+import Spinner from '../Spinner';
 import axios from '../../apis/backend';
 
 class ArticleList extends React.Component {
@@ -9,8 +10,11 @@ class ArticleList extends React.Component {
         this.fetchArticles();
     }
 
+    // API call
     fetchArticles = async ()=>{
         const response = await axios.get('/articles');
+
+        // update(set) states with API response
         this.setState(
             {
                 articles: response.data,
@@ -18,7 +22,7 @@ class ArticleList extends React.Component {
             }
         );
 
-        console.log(this.state.articles);
+        // console.log(this.state.articles);
     }
 
     renderList(){
@@ -37,9 +41,24 @@ class ArticleList extends React.Component {
                     );
         })
     }
+
+    renderEmptyState(){
+        if(this.state.articles.length===0) {
+            return  (
+                        <div className="container" align="center">
+                            <Spinner
+                                klass="spinner-border text-muted" 
+                                message = "Loading ..."
+                            />
+                        </div>
+                    );
+        }
+    }
     render(){
+
                 return  (
                             <div className="list-group">
+                                {this.renderEmptyState()}
                                 {this.renderList()}
                             </div>
                         );

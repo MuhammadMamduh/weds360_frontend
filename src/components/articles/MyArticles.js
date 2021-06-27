@@ -11,10 +11,13 @@ class MyArticles extends React.Component {
         this.fetchArticles();
     }
 
+    // API call
     fetchArticles = async ()=>{
 
         axios.defaults.headers.common['Authorization'] = "Bearer "+ localStorage.getItem('token');
         const response = await axios.get('/user/articles');
+
+        // set (update) state with API response
         this.setState(
             {
                 articles: response.data.articles,
@@ -23,9 +26,21 @@ class MyArticles extends React.Component {
             }
         );
 
-        console.log(this.state.articles);
+        // console.log(this.state.articles);
     }
 
+    renderEmptyState(){
+        if(this.state.articles.length===0) {
+            return  (
+                        <div className="container" align="center">
+                            <Spinner
+                                klass="spinner-border text-muted" 
+                                message = "Loading ..."
+                            />
+                        </div>
+                    );
+        }
+    }
     renderList(){
         console.log(this.state.articles);
         return this.state.articles.map((article)=>{
@@ -44,6 +59,18 @@ class MyArticles extends React.Component {
         })
     }
     render(){
+        if(this.state.articles.length===0) {
+            return  (
+                        <div className="container" align="center">
+                            <Spinner
+                                klass="spinner-border text-muted" 
+                            />
+                            <h1>
+                                Loading ...
+                            </h1>
+                        </div>
+                    );
+        }
                 return  (
                             <div className="container">
                                 <div className="card mt-5 border-5 pt-2 active pb-0 px-3">
@@ -61,7 +88,7 @@ class MyArticles extends React.Component {
                                                 <p className="card-text text-muted small "> 
                                                     <img alt="star" src="https://img.icons8.com/metro/26/000000/star.png" className="mr-1 " width={19} height={19} id="star" /> 
                                                         <span className="vl mr-2 ml-0" /> Created By &nbsp;&nbsp;&nbsp;|  
-                                                        <span className="font-weight-bold"> {this.state.author===""?<Spinner/>:this.state.author.name}</span>
+                                                        <span className="font-weight-bold"> {this.state.author===""?<Spinner klass="spinner-grow spinner-grow-sm"/>:this.state.author.name}</span>
                                                         <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joined Since | {moment(this.state.author.createdAt).fromNow()}
                                                 </p>
                                             </h6>
@@ -73,7 +100,7 @@ class MyArticles extends React.Component {
                                                 <i className="mdi mdi-settings-outline" /> 
                                                 <Link href="#" className="btn-outlined btn-black text-muted" style={{textDecoration: 'none'}}>
                                                     <img alt="link_image" src="https://img.icons8.com/metro/26/000000/link.png" width={17} height={17} id="plus" /> 
-                                                    &nbsp;<small> {this.state.author.email}</small> 
+                                                    &nbsp;<small> {this.state.author===""?<Spinner klass="spinner-grow spinner-grow-sm"/>:this.state.author.email}</small> 
                                                 </Link> 
                                                 <span className="vl ml-3" /> 
                                             </div>
@@ -83,6 +110,7 @@ class MyArticles extends React.Component {
 
                                 </div>
                                 <br/>
+                                {this.renderEmptyState()}
                                 {this.renderList()}
                             </div>
                         );
