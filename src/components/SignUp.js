@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from '../apis/backend';
-
+import AlertToast from './AlertToast';
 class SignUp extends React.Component {
-    state = {name:"", email:"", password:"", token:""}
+    state = {name:"", email:"", password:"", token:"", errors:""}
 
 
     
@@ -17,48 +17,64 @@ class SignUp extends React.Component {
             email:event.target.email.value,
             password:event.target.password.value
           }
-        );
+        ).then((response) => {
+      
+            // console.log(response); // Testing purposes
+    
+            this.setState({
+              name:response.data.user.name,
+              email:response.data.user.email,
+              password:response.data.user.password,
+              token:response.data.token
+            })
         
-        console.log(response);
-    
-        this.setState({
-          name:response.data.user.name,
-          email:response.data.user.email,
-          password:response.data.user.password,
-          token:response.data.token
-        })
-    
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('username', response.data.user.name);
-        console.log(localStorage.getItem('token'));
-        this.props.history.push('/');
-        window.location.reload();
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('username', response.data.user.name);
+            console.log(localStorage.getItem('token'));
+            this.props.history.push('/');
+            window.location.reload();
+          }).catch(error=>{
+            if (error.response) {
+              this.setState({
+                errors:error.response.data.msg
+              })
+              // console.log(error.response.data); // For Testing purposes
+            }
+          })
+        
+
       }
 
 render(){
     return  (
                 <div className="container">
                 <div className="row">
-                <div className="col-md-5 mx-auto">
+                <div className="col-md-6 mx-auto" style={{ backgroundColor:"#f8f9fa"}}>
 
                     <div id="second">
                     <div className="myform form">
                         <div className="logo mb-3">
                         <div className="col-md-12 text-center">
-                        <h1>Signup</h1>
+                            <h1>Signup</h1>
                         </div>
                         </div>
                         <form action="#" name="registration" onSubmit={this.handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1">Name</label>
-                                <input type="text" name="name" className="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter your Name" />
+                                <label htmlFor="exampleInputEmail1"><strong>Name</strong></label>
+                                <input pattern=".{2,30}" type="text" name="name" className="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter your Name" required/>
+                                    <p className="text-muted d-inline">
+                                        <small><i>* [2, 30] chars </i></small>
+                                    </p>
+                                <br/>
+                                <br/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1">Email address</label>
-                                <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                                <label htmlFor="exampleInputEmail1"><strong>Email</strong></label>
+                                <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required/>
+                                <br/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1">Password</label>
+                                <label htmlFor="exampleInputEmail1"><strong>Password</strong></label>
                                 <input 
                                     type="password" name="password" 
                                     id="password" className="form-control" 
@@ -68,7 +84,7 @@ render(){
                                     required
                                     />
                                 <p className="text-muted d-inline">
-                                    <small>* [7, 15] chars </small>
+                                    <small><i>* [7, 15] chars </i></small>
                                 </p>
                             </div>
                             <div className="col-md-12 ">
@@ -91,6 +107,16 @@ render(){
                                 <button type="submit" className=" btn btn-block mybtn btn-primary tx-tfm">Sign Up</button>
                             </div>
                         </form>
+                        <div className="form-group">
+                              <p className="text-center" style={{color:'red'}}>
+                                {this.state.errors}
+                              </p>
+                              {/* <AlertToast
+                                color="danger"
+                                msg={this.state.errors===""?"":this.state.errors}
+                                visible={this.state.errors===""?false:true}
+                              /> */}
+                        </div>
                         </div>
                     </div>
                 </div>

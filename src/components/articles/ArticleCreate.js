@@ -38,14 +38,14 @@ render(){
     return  (
         <div className="container">
         <div className="row">
-          <div className="col-md-5 mx-auto">
-            <div id="first">
+          <div className="col-md-10 mx-auto" style={{ backgroundColor:"#f8f9fa"}}>
+            <div className="text-center">
               <h1>Publish an Article</h1>
             </div>
-          </div>
-          <form action="/" method="post" name="publish" onSubmit={this.handleSubmit}>
+          
+          <form action="/" method="post" name="publish" onSubmit={this.handleSubmit} >
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Title</label>
+              <label htmlFor="exampleInputEmail1"><strong>Title</strong></label>
               
               <input 
                 type="text" name="title" 
@@ -57,14 +57,13 @@ render(){
                 required
               />
               <p className="text-muted d-inline">
-                <br/>
-                * Between 3 & 90 chars
+                <i>* Between 3 & 90 chars</i>
               </p>
             </div>
 
             <br/>
             <div className="form-group">
-                <label className="form-label" htmlFor="customFile">Upload a Caption (image)</label>
+                <label className="form-label" htmlFor="customFile"><strong>Upload a Caption (image)</strong></label>
                 <input 
                   type="file" className="form-control" 
                   name="caption" id="caption" 
@@ -74,7 +73,7 @@ render(){
 
             <br/>
             <div class="form-group">
-              <label>Body</label>
+              <label><strong>Body</strong></label>
               <div class="md-form amber-textarea active-amber-textarea-2">
                 <textarea 
                   id="editor" 
@@ -93,7 +92,7 @@ render(){
                 {/* * Between 100 & 1000 chars */}
               </p>
             </div>
-
+            
             <div className="col-md-12 ">
                 <div className="login-or">
                     <hr className="hr-or" />
@@ -107,6 +106,7 @@ render(){
             
           </form>
          
+        </div>
         </div>
         <br/>
       </div>

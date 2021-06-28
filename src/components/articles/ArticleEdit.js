@@ -54,7 +54,7 @@ render(){
           <div className="row">
           <div className="col-md-12 ">
             <div className="col-md-5 mx-auto">
-              <div id="first">
+              <div className="text-center">
                 <h1>Modify an Article</h1>
               </div>
             </div>
@@ -87,8 +87,7 @@ render(){
               />
             </div>
             <p className="text-muted d-inline">
-                <br/>
-                * Between 3 & 90 chars
+                <i>* Between 3 & 90 chars</i>
                 <br/>
               </p>
             <br/>
