@@ -30,8 +30,15 @@ class MyArticles extends React.Component {
         // console.log(this.state.articles);
     }
 
-    renderEmptyState(){
-        if(this.state.articles.length===0) {
+    renderLoadingState(){
+        if(this.state.author && this.state.articles.length===0) {
+            return  (
+                        <div className="container" align="center">
+                            <h1>You haven't published any articles yet</h1>
+                        </div>
+                    );
+        }
+        else if(this.state.articles.length===0) {
             return  (
                         <div className="container" align="center">
                             <Spinner
@@ -40,8 +47,8 @@ class MyArticles extends React.Component {
                             <h1>Loading ...</h1>
                         </div>
                     );
-        }
-    }
+        }}
+
     renderList(){
         return this.state.articles.map((article)=>{
             return  (
@@ -98,7 +105,8 @@ class MyArticles extends React.Component {
 
                             </div>
                             <br/>
-                            {this.renderEmptyState()}
+                            {this.renderLoadingState()}
+                            {/* {this.renderEmptyState()} */}
                             {this.renderList()}
                         </div>
                     );
