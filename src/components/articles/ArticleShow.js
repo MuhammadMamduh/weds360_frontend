@@ -30,7 +30,7 @@ class ArticleShow extends React.Component {
     
     renderImage(){
         if(this.state.id) {
-            return(<img src={`https://mamduh-weds360-backend.herokuapp.com/article/${this.state.id}/image`} className="img-fluid" alt=""/>);
+            return(<img src={`${process.env.REACT_APP_BACKEND_API}/article/${this.state.id}/image`} className="img-fluid" alt=""/>);
         }
         return(<Skeleton height={400} width={500}/>);
     }
