@@ -53,11 +53,11 @@ render(){
                 id="title" aria-describedby="Article Title" 
                 placeholder="Article Title" 
 
-                pattern=".{3,90}"
+                pattern=".{3,150}"
                 required
               />
               <p className="text-muted d-inline">
-                <i>* Between 3 & 90 chars</i>
+                <i>* Between 3 & 150 chars</i>
               </p>
             </div>
 
@@ -101,7 +101,7 @@ render(){
             </div>
 
             <div className="col-md-12 text-center ">
-              <button type="submit" className="btn btn-outline-secondary btn-lg">Publish</button>
+              <button type="submit" className="btn btn-outline-primary btn-lg">Publish</button>
             </div>
             
           </form>
