@@ -63,7 +63,7 @@ class ArticleItem extends React.Component {
                         <img length="370" width="300" src={`${process.env.REACT_APP_BACKEND_API}/article/${this.props.articleId}/image`} alt={this.props.title} className="img-thumbnail"/>
                     </Link>
                 </div>
-                <div className="col-sm-8  d-flex flex-column">
+                <div className="col-sm-8 d-flex flex-column">
                     <h4 className="text-break" style={{maxWidth:"75%", maxHeight: '85px', overflow: 'hidden',  textDecoration: 'none'}}>
                         <Link to={`/article/${this.props.articleId}`} style={{ textDecoration: 'none', color:'black' }}>
                             {this.props.title || <Skeleton/>}
@@ -79,7 +79,7 @@ class ArticleItem extends React.Component {
                         <small><p className="text-muted d-inline"><StopwatchIcon/> Last Updated | {moment(this.props.lastUpdated).fromNow()}</p></small>
                     </div>
 
-                    <div className="text-break" style={{ overflow: 'hidden', maxHeight: '125px'}}>
+                    <div className="text-break" style={{ overflow: 'hidden', maxHeight: '100px'}}>
                         {this.props.body || <Skeleton/>}
                     </div>
                     <div className="mt-auto">

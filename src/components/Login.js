@@ -12,7 +12,7 @@ class Login extends React.Component{
       password:this.state.password
     });
 
-    // console.log(response);
+    // console.log(response); // testing purposes
   }
 
    handleSubmit = async(event) =>{
@@ -25,7 +25,7 @@ class Login extends React.Component{
       }
     ).then((response) => {
       
-      // console.log(response.status); // For Testing purposes
+      // console.log(response.status); // testing purposes
 
       this.setState({
         name: response.data.user.name,
@@ -44,7 +44,7 @@ class Login extends React.Component{
         this.setState({
           errors:error.response.data.msg
         })
-        // console.log(error.response.data); // For Testing purposes
+        // console.log(error.response.data); //testing purposes
       }
     })
   }
