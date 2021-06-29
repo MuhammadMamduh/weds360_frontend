@@ -79,7 +79,7 @@ class ArticleItem extends React.Component {
                         <small><p className="text-muted d-inline"><StopwatchIcon/> Last Updated | {moment(this.props.lastUpdated).fromNow()}</p></small>
                     </div>
 
-                    <div className="text-break" style={{ overflow: 'hidden', maxHeight: '100px'}}>
+                    <div className="text-break" style={{ overflow: 'hidden', maxHeight: '95px'}}>
                         {this.props.body || <Skeleton/>}
                     </div>
                     <div className="mt-auto">
