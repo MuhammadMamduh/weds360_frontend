@@ -25,7 +25,7 @@ class ArticleList extends React.Component {
     // API call
     fetchArticles = async ()=>{
         this.setState({ loading: true });
-        const response = await axios.get('/articles', { params: { skip: this.state.articles.length, limit: 4 }});
+        const response = await axios.get('/articles', { params: { skip: this.state.articles.length, limit: 5 }});
 
         if(response.data.length===0)
         {
