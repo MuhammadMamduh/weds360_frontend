@@ -5,6 +5,8 @@ import {PencilIcon, XCircleIcon, StopwatchIcon} from '@primer/octicons-react';
 import axios from '../apis/backend';
 import Spinner from './Spinner';
 import Skeleton from 'react-loading-skeleton';
+import { MdDeleteForever } from "react-icons/md";
+import { ImPencil } from "react-icons/im";
 
 class ArticleItem extends React.Component {
     state = {articleId: "", title:"", body:"", auhor:""}
@@ -22,17 +24,18 @@ class ArticleItem extends React.Component {
                 <div className="d-inline">
                     <p className="text-muted d-inline">
                         <Link to={`/articles/edit/${this.props.articleId}`} style={{ textDecoration: 'none' }}>
-                            <PencilIcon/>
+                            <ImPencil/>
                             <span className="glyphicon glyphicon-pencil"> Edit </span>
                         </Link>
                     </p>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <p className="text-muted d-inline">
-                        <Link to="#" style={{ textDecoration: 'none' }}>
+                        <Link to="#" style={{ textDecoration: 'none', color:'red'}}>
                             <span className="glyphicon glyphicon-pencil"> 
-                                <button type="submit" className="btn btn-link" onClick={this.deleteArticle}>Delete</button> 
+                                <button type="submit" className="btn btn-link" style={{ textDecoration: 'none', color:'red'}} onClick={this.deleteArticle}>Delete</button> 
+                                <MdDeleteForever/>
                             </span>
-                            <XCircleIcon/>
+                            
                         </Link>
                     </p>
                 </div>

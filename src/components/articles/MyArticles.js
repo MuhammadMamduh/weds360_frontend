@@ -5,6 +5,7 @@ import moment from 'moment';
 import {Link} from 'react-router-dom';
 import Spinner from '../Spinner';
 import Skeleton from 'react-loading-skeleton';
+import { ImQuill, ImEnvelop } from "react-icons/im";
 class MyArticles extends React.Component {
     state = {articles: [], selectedArticle: null, author:""}; // state & its initialization
 
@@ -81,10 +82,10 @@ class MyArticles extends React.Component {
                                         <div className="col">
                                         <h6 className="card-subtitle mb-2 text-muted">
                                             <p className="card-text text-muted small "> 
-                                                <img alt="star" src="https://img.icons8.com/metro/26/000000/star.png" className="mr-1 " width={19} height={19} id="star" /> 
-                                                    <span className="vl mr-2 ml-0" /> Created By &nbsp;&nbsp;&nbsp;|  
-                                                    <span className="font-weight-bold"> {this.state.author.name||<Spinner klass="spinner-grow spinner-grow-sm"/>}</span>
-                                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joined Since | {moment(this.state.author.createdAt).fromNow()}
+                                                <ImQuill/>&nbsp;&nbsp;
+                                                <span className="vl mr-2 ml-0" />Created By &nbsp;&nbsp;&nbsp;|  
+                                                <span className="font-weight-bold"> {this.state.author.name||<Spinner klass="spinner-grow spinner-grow-sm"/>}</span>
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joined Since | {moment(this.state.author.createdAt).fromNow()}
                                             </p>
                                         </h6>
                                         </div>
@@ -94,7 +95,7 @@ class MyArticles extends React.Component {
                                         <div className=" col-md-auto "> 
                                             <i className="mdi mdi-settings-outline" /> 
                                             <Link href="#" className="btn-outlined btn-black text-muted" style={{textDecoration: 'none'}}>
-                                                <img alt="link_image" src="https://img.icons8.com/metro/26/000000/link.png" width={17} height={17} id="plus" /> 
+                                                <ImEnvelop/>
                                                 &nbsp;<small> {this.state.author.email||<Spinner klass="spinner-grow spinner-grow-sm"/>}</small> 
                                             </Link> 
                                             <span className="vl ml-3" /> 
