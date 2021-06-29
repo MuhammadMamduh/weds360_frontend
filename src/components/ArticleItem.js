@@ -60,8 +60,10 @@ class ArticleItem extends React.Component {
                 <div className="col-sm-4">
                     <Link to={`/article/${this.props.articleId}`} className="">
                         {/* {this.state.articleId===""?<Spinner/>:""} */}
-                        <img length="370" width="300" src={`${process.env.REACT_APP_BACKEND_API}/article/${this.props.articleId}/image`} alt={this.props.title} className="img-thumbnail"/>
-                    </Link>
+                        {this.props.articleId?
+                        <img length="370" width="300" src={`${process.env.REACT_APP_BACKEND_API}/article/${this.props.articleId}/image`} alt={this.props.title} style={{padding:'5px'}} className="img-thumbnail mx-auto d-block"/>
+                        :<Skeleton/>}
+                        </Link>
                 </div>
                 <div className="col-sm-8 d-flex flex-column">
                     <h4 className="text-break" style={{maxWidth:"75%", maxHeight: '85px', overflow: 'hidden',  textDecoration: 'none'}}>
