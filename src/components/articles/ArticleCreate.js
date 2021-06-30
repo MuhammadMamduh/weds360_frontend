@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 
 
 class ArticleCreate extends React.Component{
-  state= {title:"", image:null, body:""};
+  state= {title:"", image:null, body:"", valid:false, errors:""};
   
 
   handleSubmit = async(event) =>{
@@ -28,10 +28,19 @@ class ArticleCreate extends React.Component{
     }
 
     axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
-    const response = await axios.post('/articles',formData, config)
-    console.log(response);
+    const response = await axios.post('/articles',formData, config).then((response)=>{
+      this.props.history.push('/');
+    }).catch((error)=>{
+      if (error.response) {
+        this.setState({
+          errors:error.response.data.msg
+        })
+        // console.log(error.response.data); //testing purposes
+      }
+    })
+    // console.log(response); // testing purposes
 
-    this.props.history.push('/');
+    
   }
 
 render(){
@@ -76,23 +85,29 @@ render(){
               <label><strong>Body</strong></label>
               <div class="md-form amber-textarea active-amber-textarea-2">
                 <textarea 
+                  maxLength={1000}
                   id="editor" 
-                  class="md-textarea form-control" 
+                  className="md-textarea form-control" 
                   rows="10"
                   value={this.state.body}
-                  onChange={(e) => {this.setState({body: e.target.value})}}
+                  onChange={(e) => {
+                    this.setState({body: e.target.value});
 
-                  pattern=".{100,1000}"
+                    if(e.target.value.length >10)
+                    {this.setState({valid:true});}
+
+                  }}
+                  
+
+                
                   required
                 >
                 </textarea>
               </div>
               <p className="text-muted d-inline">
-              <br/>
-                {/* * Between 100 & 1000 chars */}
+              <i>* Between 100 & 1000 chars</i>
               </p>
             </div>
-            
             <div className="col-md-12 ">
                 <div className="login-or">
                     <hr className="hr-or" />
@@ -101,11 +116,16 @@ render(){
             </div>
 
             <div className="col-md-12 text-center ">
-              <button type="submit" className="btn btn-outline-primary btn-lg">Publish</button>
+              <button type="submit" className={`btn btn-outline-primary btn-lg ${this.state.valid?'':'disabled'}`}>Publish</button>
             </div>
             
           </form>
-         
+          <br/>
+          <div className="form-group">
+              <p className="text-center" style={{color:'red'}}>
+                {this.state.errors}
+              </p>
+          </div>
         </div>
         </div>
         <br/>

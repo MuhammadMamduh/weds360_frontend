@@ -64,7 +64,7 @@ render(){
             </div>
           </div>
           <div className="d-flex align-items-center justify-content-center">
-              <img src={`https://mamduh-weds360-backend.herokuapp.com/article/${this.props.match.params.id}/image`} className="img-fluid" alt=""/>
+              <img src={`${process.env.REACT_APP_BACKEND_API}/article/${this.props.match.params.id}/image`} className="img-fluid" alt=""/>
           </div>
 
           <div className="col-md-12 ">
