@@ -93,7 +93,7 @@ render(){
                   onChange={(e) => {
                     this.setState({body: e.target.value});
 
-                    if(e.target.value.length >10)
+                    if(e.target.value.length >99)
                     {this.setState({valid:true});}
 
                   }}
