@@ -126,7 +126,11 @@ render(){
                   onChange={(e) => {
                     this.setState({body: e.target.value})
                     if(e.target.value.length >99)
-                    {this.setState({valid:true});}
+                    {
+                      this.setState({valid:true});
+                    }else{
+                      this.setState({valid:false});
+                    }
                   }}
 
                   pattern=".{100,1000}"
