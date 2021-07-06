@@ -69,7 +69,8 @@ class MyArticles extends React.Component {
     render(){
             return  (
                         <div className="container">
-                            <div className="card mt-5 border-5 pt-2 active pb-0 px-3">
+                            <div className="d-flex justify-content-center">
+                            <div className="card mt-5 border-5  pt-2 active pb-0 px-3 col-11">
                                 <div className="card-body ">
                                     <div className="row">
                                         <div className="col-12 ">
@@ -104,6 +105,7 @@ class MyArticles extends React.Component {
                                 </div>
                                 </div>
 
+                            </div>
                             </div>
                             <br/>
                             {this.renderLoadingState()}
