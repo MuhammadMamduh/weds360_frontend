@@ -85,7 +85,7 @@ render(){
               <label><strong>Body</strong></label>
               <div class="md-form amber-textarea active-amber-textarea-2">
                 <textarea 
-                  maxLength={1000}
+                  maxLength={5000}
                   id="editor" 
                   className="md-textarea form-control" 
                   rows="10"
@@ -105,7 +105,7 @@ render(){
                 </textarea>
               </div>
               <p className="text-muted d-inline">
-              <i>* Between 100 & 1000 chars</i>
+              <i>* Between 100 & 5000 chars</i>
               </p>
             </div>
             <div className="col-md-12 ">

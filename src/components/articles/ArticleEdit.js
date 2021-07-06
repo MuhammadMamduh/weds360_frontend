@@ -133,13 +133,13 @@ render(){
                     }
                   }}
 
-                  pattern=".{100,1000}"
+                  pattern=".{100,5000}"
                   required
                 >
                 </textarea>
               </div>
               <p className="text-muted d-inline">
-              <i>* Between 100 & 1000 chars</i>
+              <i>* Between 100 & 5000 chars</i>
               </p>
               <p className="text-muted d-inline">
               <br/>
