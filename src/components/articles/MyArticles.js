@@ -1,5 +1,5 @@
 import React from 'react';
-import ArticleItem from '../ArticleItem';
+import ArticleItem from './ArticleItem';
 import axios from '../../apis/backend';
 import moment from 'moment';
 import {Link} from 'react-router-dom';

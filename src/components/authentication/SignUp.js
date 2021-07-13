@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import axios from '../apis/backend';
+import axios from '../../apis/backend';
 
 class SignUp extends React.Component {
     state = {name:"", email:"", password:"", token:"", errors:""}

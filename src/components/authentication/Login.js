@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import axios from '../apis/backend';
-import AlertToast from './AlertToast';
+import axios from '../../apis/backend';
+import AlertToast from '../AlertToast';
 
 class Login extends React.Component{
   state = {name:"", email:"", password:"", token:"null", errors:""}

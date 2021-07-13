@@ -7,8 +7,8 @@ import ArticleEdit from './articles/ArticleEdit';
 import ArticleShow from './articles/ArticleShow';
 import ArticleList from './articles/ArticleList';
 import MyArticles from './articles/MyArticles';
-import Login from './Login';
-import SignUp from './SignUp';
+import Login from '../components/authentication/Login';
+import SignUp from '../components/authentication/SignUp';
 
 class App extends React.Component{
 

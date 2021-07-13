@@ -1,5 +1,5 @@
 import React from 'react';
-import ArticleItem from '../ArticleItem';
+import ArticleItem from './ArticleItem';
 import Spinner from '../Spinner';
 import axios from '../../apis/backend';
 import InfiniteScroll from 'react-infinite-scroller';
